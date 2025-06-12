@@ -2,6 +2,7 @@ import cv2
 import streamlit as st
 import numpy as np
 from deepface import DeepFace
+import os
 
 # Função para comparar com base de dados
 def stream_frame(frame,model_face_recognition, detector_backend, distance_metric, enforce_detection, align, silent):
@@ -114,7 +115,7 @@ def facesentiment(choice,
 def main():
     st.set_page_config(page_title="Real-Time Face Recognition", layout="centered")
 
-    st.sidebar.title("🎭 DeepFace Real-Time")
+    st.sidebar.title("Settings")
     activities = ["Face analyse", "Face recognition"]
     choice = st.sidebar.selectbox("Select Activity", activities)
 
@@ -161,14 +162,19 @@ def main():
     
     #-------------------------------------
     
-    st.markdown("""
-        <div style="background-color:#6D7B8D;padding:20px">
-            <h4 style="color:white;text-align:center;">
-                Real-time face emotion and identity recognition using OpenCV, DeepFace and Streamlit.
-            </h4>
-        </div><br>
-    """, unsafe_allow_html=True)
+    st.title("Face recognition APP", anchor="center")
 
+    # escolher arquivo de imagem para subir no banco de dados
+    uploaded_file = st.file_uploader("Upload an image to add to the database", type=["jpg", "jpeg", "png"])
+    if uploaded_file is not None:
+        upload_name_dir = uploaded_file.name.split('.')[0]
+        upload_name_dir = ''.join(filter(str.isalpha, upload_name_dir))
+        if not os.path.exists(f"./celebrity_faces/{upload_name_dir}"):
+            os.makedirs(f"./celebrity_faces/{upload_name_dir}")
+        with open(f"./celebrity_faces/{upload_name_dir}/{uploaded_file.name}", "wb") as f:
+            f.write(uploaded_file.getbuffer())
+        st.success(f"Image {uploaded_file.name} added to the database.")
+        
     facesentiment(choice, 
                   detector_backend=detector_backend,
                   enforce_detection=enforce_detection,
@@ -178,6 +184,8 @@ def main():
                   model_face_recognition=model_face_recognition,
                   expand_percentage=expand_percentage,
                   silent=silent)
-
+   
+    
+                
 if __name__ == "__main__": 
     main()
