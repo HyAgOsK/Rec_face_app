@@ -84,7 +84,7 @@ def facesentiment(choice,
         # Coleta de dados para exibição
         texts = [
             f"Age: {result[0]['age']}",
-            f"Confidence: {round(result[0]['face_confidence'], 2)}",
+            f"Confidence: {round((result[0]['face_confidence'])*100, 2)}",
             f"Gender: {result[0]['dominant_gender']} ({round(result[0]['gender'][result[0]['dominant_gender']], 2)})",
             f"Race: {result[0]['dominant_race']}",
             f"Emotion: {result[0]['dominant_emotion']} ({round(result[0]['emotion'][result[0]['dominant_emotion']], 2)})",
@@ -99,10 +99,13 @@ def facesentiment(choice,
                     identity = best_match['identity'].split('/')[-1]
                     identity = identity.split('.')[0] 
                     name = identity.split('\\')[-2]
-                    texts.append(f"Recognized as: {name}")
+                    if result[0]['face_confidence'] < 0.90:
+                        texts.append(f"Face: Not Recognized")
+                    else:
+                        texts.append(f"Recognized as: {name}")
                     
                 else:
-                    texts.append("Face not recognized.")
+                    texts.append("Face: Not Recognized.")
             except Exception as e:
                 texts.append(f"Recognition error: {e}")
 
