@@ -59,7 +59,7 @@ def facesentiment(detector_backend,
                   expand_percentage,
                   silent):
 
-    cap = cv2.VideoCapture('Luciano.mp4')
+    cap = cv2.VideoCapture('Videoteste.mp4')
     stframe = st.image([])
 
     analyze_result = {}
