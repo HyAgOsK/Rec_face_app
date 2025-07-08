@@ -221,7 +221,7 @@ def facesentiment(config, error_info):
                 
                 # Informação adicional
                 if config['anti_spoofing']:
-                    status_text = f"Real: {'Não' if is_spoofing else 'Sim'}"
+                    status_text = f"Real: {'Nao' if is_spoofing else 'Sim'}"
                     cv2.putText(frame_overlay, status_text, (x + 5, y + h + 25),
                                cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
 
