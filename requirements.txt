@@ -1,3 +1,5 @@
+tensorflow[and-cuda]
 opencv-python
-deepface
 streamlit
+deepface
+scikit-learn

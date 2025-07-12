@@ -46,26 +46,28 @@ git clone https://github.com/HyAgOsK/Rec_face_app.git
 cd Rec_face_app
 ```
 
-### 3. Crie um ambiente virtual com Python 3.8
+### 2. Crie um ambiente virtual com anaconda Python 3.8 e ative ele(WSL)
 
-[Versões do python](https://www.python.org/downloads/release/python-380/)
+**Passo a passo para instalação com WSL anaconda python 3.8 e ativação da GPU:**
+[configuação WSL + CUDA](https://www.youtube.com/watch?v=OHCPGvf06EA)
+
+*obs: Mude o python para 3.8*
 
 ```bash
 
-python -m venv venv
-./venv/Script/activate
+ conda create -n venv python=3.8
+ conda activate venv
+
 ```
 
-Se você estiver usando o VS CODE, clique no canto inferior esquerdo, em azul, conecte com o executavel para ambiente virtual
-com python venv, usando o executável que você baixou na web.
 
 ### 2. Instale os requisitos
 
 ```bash
-pip install -r requirements.txt
-```
 
-> 💡 Recomenda-se usar um ambiente virtual (`venv` python=3.9).
+pip install -r requirements.txt
+
+```
 
 ### 3. Execute o Streamlit
 
@@ -83,7 +85,7 @@ streamlit run app.py
 
 ## 📥 Adicionando novas faces ao banco
 
-Adicione imagens de pessoas que você deseja reconhecer dentro da pasta pelo proprio aplicativo:
+Adicione imagens de pessoas que você deseja reconhecer dentro da pasta pelo proprio aplicativo ou manualmente:
 
 ```
 celebrity_faces/NomeDaPessoa/
@@ -102,4 +104,4 @@ O DeepFace usará estas imagens como base de comparação.
 
 ---
 
-Desenvolvido com 💡 por [Hyago]
+Desenvolvido com 💡 por [Hyago] colaboração com Matheus Cruz e Aryel Lopes
