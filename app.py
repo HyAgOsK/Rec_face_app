@@ -2,11 +2,9 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer, VideoTransformerBase, WebRtcMode
 import av
 import cv2
-import numpy as np
 from deepface import DeepFace
 import os
 import threading
-import queue
 from datetime import datetime, timedelta
 import pandas as pd
 import logging
@@ -21,7 +19,7 @@ class FaceRecognitionTransformer(VideoTransformerBase):
         self.recognized_log = []
         self.frame_counter = 0
         self.last_analysis_time = datetime.now()
-        self.analysis_interval = 1.0  # Analisar a cada 1 segundo
+        self.analysis_interval = 1e-3  # Analisar a cada 1 ms
         self.lock = threading.Lock()
         
     def get_log(self):
@@ -329,7 +327,8 @@ class FaceRecognitionTransformer(VideoTransformerBase):
                     status_text = f"Real: {'Nao' if is_spoofing else 'Sim'}"
                     cv2.putText(img, status_text, (x + 5, y + h + 45),
                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1)
-        
+                
+                
         return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 def main():
