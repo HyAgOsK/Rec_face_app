@@ -10,8 +10,8 @@ import pandas as pd
 import logging
 
 # Configurar logging para reduzir warnings
-logging.getLogger("deepface").setLevel(logging.WARNING)
-logging.getLogger("tensorflow").setLevel(logging.WARNING)
+#logging.getLogger("deepface").setLevel(logging.WARNING)
+#logging.getLogger("tensorflow").setLevel(logging.WARNING)
 
 class FaceRecognitionTransformer(VideoTransformerBase):
     def __init__(self, config):

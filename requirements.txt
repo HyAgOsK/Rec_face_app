@@ -1,5 +1,6 @@
 tensorflow[and-cuda]
-opencv-python
+opencv-python-headless
 streamlit
 deepface
 scikit-learn
+streamlit-webrtc
