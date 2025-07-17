@@ -2,6 +2,6 @@ tensorflow[and-cuda]
 opencv-python-headless
 streamlit
 deepface
-scikit-learn
 streamlit-webrtc
+scikit-learn
 tf-keras
