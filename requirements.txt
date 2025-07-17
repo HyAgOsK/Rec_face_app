@@ -4,3 +4,4 @@ streamlit
 deepface
 scikit-learn
 streamlit-webrtc
+tf-keras
